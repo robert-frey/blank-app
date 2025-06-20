@@ -25,7 +25,7 @@ with tab1:
     st.header("D2 Commits")
 
     st.dataframe(
-        d2_commits_df,
+        d2_commits_df.iloc[:, 0:5],
         use_container_width=True,
         height=700,
         column_config={
@@ -43,12 +43,16 @@ with tab1:
 with tab2:
     st.header("Players Leaving D2")
 
-    # Convert 'Source' column to hyperlinks
-    leaving_d2_df["Source"] = leaving_d2_df["Source"].apply(
-        lambda x: f'<a href="{x}" target="_blank">Source</a>' if pd.notnull(x) else ""
-    )
-
-    st.write(
-        leaving_d2_df.to_html(escape=False, index=False),
-        unsafe_allow_html=True
+    st.dataframe(
+        leaving_d2_df.iloc[:, 0:5],
+        use_container_width=True,
+        height=700,
+        column_config={
+            "Name": st.column_config.Column("Player Name"),
+            "Prev School": st.column_config.Column("Previous School"),
+            "New School": st.column_config.Column("New School"),
+            "Level": st.column_config.Column("Level"),
+            "Pos": st.column_config.Column("Position")
+        },
+        hide_index=True
     )
