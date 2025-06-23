@@ -24,8 +24,11 @@ tab1, tab2 = st.tabs(["D2 Commits","Leaving D2"])
 with tab1:
     st.header("D2 Commits")
 
+    commit_sort_df = d2_commits_df.sort_values(by="New School", ascending=True)
+
+
     st.dataframe(
-        d2_commits_df.iloc[:, 0:5],
+        commit_sort_df.iloc[:, 0:5],
         use_container_width=True,
         height=700,
         column_config={
